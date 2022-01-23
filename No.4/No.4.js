@@ -1,6 +1,8 @@
 var server_echo;
-var json = {
-    //used JSON.stringify() twice
+//1. bad variable name
+// var json = {
+var body = {
+    //2. use JSON.stringify() twice, duplicate serialize
     // json: JSON.stringify({
     //     a: 1,
     //     b: 2
@@ -15,15 +17,15 @@ fetch('/echo/', {
     method: 'post',
     headers: {
         'Accept': 'application/json, text/plain, */*',
-        //Content-Type was wrong
-        //'Content-Type': 'application/json'
+        //3. Content-Type was wrong
+        // 'Content-Type': 'application/json'
         'Content-Type': 'application/x-www-form-urlencoded'
     },
-    body: 'json=' + encodeURIComponent(JSON.stringify(json.json)) + '&delay=' + json.delay
+    body: 'json=' + encodeURIComponent(JSON.stringify(body.json)) + '&delay=' + body.delay
 })
 .then(function (response) {
-    //response is a promise object, server_echo couldn't get value here
-    //server_echo = response.json().echo
+    //4. response.json() is a promise object, server_echo wouldn't get value here
+    // server_echo = response.json().echo
     return response.json();
 })
 .then(function (result) {
@@ -31,14 +33,14 @@ fetch('/echo/', {
     server_echo.forEach(
         element => console.log(element)
     )
-    //result is a json object, alert cannot show json object directly
-    //alert(result);
+    //5. result is a json object, alert cannot directly show json object
+    // alert(result);
     alert(JSON.stringify(result));
 })
 .catch (function (error) {
     console.log('Request failed', error);
 });
-// server_echo should wait for async action, not implement right away 
+//6. server_echo should wait for async action, not implement right away 
 // server_echo.forEach(
 //     element => console.log(element)
 // )
