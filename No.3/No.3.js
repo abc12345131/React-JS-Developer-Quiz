@@ -1,4 +1,4 @@
-const obj = {'SPANISH':SPANISH_FUDGE, 'FRENCH':FRENCH_FUDGE, 'ENGLISH':ENGLISH_FUDGE}
+let obj = {'SPANISH':SPANISH_FUDGE, 'FRENCH':FRENCH_FUDGE, 'ENGLISH':ENGLISH_FUDGE}
 if (recipe in obj) {
     if (recipe == 'FRENCH') {
         chocolate = 7;
