@@ -10,8 +10,6 @@ module.exports = {
         //could use [name] as file name, which is the entry point like main/test
         filename: 'bundle.js',
         path: resolve(__dirname, 'dist'),
-        //html import path prefix 
-        publicPath: './',
     },
     module: {
         rules: [
@@ -31,8 +29,17 @@ module.exports = {
                 //self defined title
                 title:"No.1",
                 //auto import packed js/css based on template
-                template:'./src/index.html',
+                template:'./public/index.html',
+                hash: true, // cache busting
+                filename: '../dist/index.html'
             })
     ],
-    mode: 'development'
+    mode: 'development',
+    devServer: {
+        port: 3000,
+        //auto open browser
+        open: true, 
+        hot: true,
+    },
+    devtool: 'source-map'
 };

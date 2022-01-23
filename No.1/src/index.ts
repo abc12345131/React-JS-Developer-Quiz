@@ -1,19 +1,17 @@
 let candyBar = () => {
     let input: number = + (<HTMLInputElement>document.getElementById('input')).value;
     let resultElement: HTMLElement = document.getElementById('result')!;
-    if(input%22 == 0){
-        resultElement.innerHTML = 'candybar'
-        console.log('candybar');
-    } else if(input%11==0) {
-        resultElement.innerHTML = 'bar'        
-        console.log('bar');
-    } else if(input%2==0) {
-        resultElement.innerHTML = 'candy'
-        console.log('candy');
-    }else {
-        resultElement.innerHTML = String(input)
-        console.log(input)
+    let objArr: {[key: number]: string}[] = [{22: 'candybar'}, {11: 'bar'}, {2: 'candy'}]
+    for(let obj of objArr) {
+        let key: number= + Object.keys(obj)
+        if(input%key===0) {
+            resultElement.innerHTML = obj[key]
+            console.log(obj[key]);
+            return
+        }
     }
+    resultElement.innerHTML = String(input)
+    console.log(input);
 }
 
 document.getElementById('enter')!.addEventListener('click', () => candyBar())
